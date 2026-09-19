@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Каталог фильмов с поиском и сохранением в избранное."
+    />
+
+    <title>КиноПолка - каталог фильмов</title>
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script src="./assets/js/main.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="./index.html">КиноПолка</a>
+
+      <nav class="catalog-nav" aria-label="Разделы каталога">
+        <button class="catalog-nav__button" type="button" aria-pressed="true">
+          Все фильмы
+        </button>
+
+        <button class="catalog-nav__button" type="button" aria-pressed="false">
+          Избранное <span class="favorites-count">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <h1 class="headline">Каталог фильмов</h1>
+      <p class="headline-caption">Найди кино для своего вечера</p>
+
+      <form class="search-form" role="search">
+        <label for="movie-search">Название фильма</label>
+
+        <input
+          class="search-input"
+          type="search"
+          id="movie-search"
+          name="query"
+          placeholder="Поиск по названию"
+        />
+
+        <button class="search-button" type="submit">Найти</button>
+      </form>
+
+      <ul class="movie-list">
+        <li class="movie-list__item">
+          <article class="movie-card">
+            <div class="movie-card__poster-wrapper">
+              <img
+                class="movie-card__poster"
+                src="./assets/images/posters/interstellar.webp"
+                alt="Постер фильма 'Интерстеллар'"
+                width="300"
+                height="450"
+              />
+
+              <span class="movie-card__rating">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">Рейтинг:</span>
+                8.7
+              </span>
+
+              <button
+                class="movie-card__favorite"
+                type="button"
+                aria-label="Избранное: Интерстеллар"
+                aria-pressed="false"
+              >
+              <span aria-hidden="true">♡</span>
+              </button>
+            </div>
+
+            <h2 class="movie-card__title">Интерстеллар</h2>
+
+            <p class="movie-card__details">
+                <span>2014</span>
+                <span aria-hidden="true"> · </span>
+                <span>Фантастика</span>
+            </p>
+          </article>
+        </li>
+
+        <li class="movie-list__item">
+          <article class="movie-card">
+            <div class="movie-card__poster-wrapper">
+              <img
+                class="movie-card__poster"
+                src="./assets/images/posters/interstellar.webp"
+                alt="Постер фильма 'Интерстеллар'"
+                width="300"
+                height="450"
+              />
+
+              <span class="movie-card__rating">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">Рейтинг:</span>
+                8.7
+              </span>
+
+              <button
+                class="movie-card__favorite"
+                type="button"
+                aria-label="Избранное: Интерстеллар"
+                aria-pressed="false"
+              >
+              <span aria-hidden="true">♡</span>
+              </button>
+            </div>
+
+            <h2 class="movie-card__title">Интерстеллар</h2>
+
+            <p class="movie-card__details">
+                <span>2014</span>
+                <span aria-hidden="true"> · </span>
+                <span>Фантастика</span>
+            </p>
+          </article>
+        </li>
+
+        <li class="movie-list__item">
+          <article class="movie-card">
+            <div class="movie-card__poster-wrapper">
+              <img
+                class="movie-card__poster"
+                src="./assets/images/posters/interstellar.webp"
+                alt="Постер фильма 'Интерстеллар'"
+                width="300"
+                height="450"
+              />
+
+              <span class="movie-card__rating">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">Рейтинг:</span>
+                8.7
+              </span>
+
+              <button
+                class="movie-card__favorite"
+                type="button"
+                aria-label="Избранное: Интерстеллар"
+                aria-pressed="false"
+              >
+              <span aria-hidden="true">♡</span>
+              </button>
+            </div>
+
+            <h2 class="movie-card__title">Интерстеллар</h2>
+
+            <p class="movie-card__details">
+                <span>2014</span>
+                <span aria-hidden="true"> · </span>
+                <span>Фантастика</span>
+            </p>
+          </article>
+        </li>
+
+        <li class="movie-list__item">
+          <article class="movie-card">
+            <div class="movie-card__poster-wrapper">
+              <img
+                class="movie-card__poster"
+                src="./assets/images/posters/interstellar.webp"
+                alt="Постер фильма 'Интерстеллар'"
+                width="300"
+                height="450"
+              />
+
+              <span class="movie-card__rating">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">Рейтинг:</span>
+                8.7
+              </span>
+
+              <button
+                class="movie-card__favorite"
+                type="button"
+                aria-label="Избранное: Интерстеллар"
+                aria-pressed="false"
+              >
+              <span aria-hidden="true">♡</span>
+              </button>
+            </div>
+
+            <h2 class="movie-card__title">Интерстеллар</h2>
+
+            <p class="movie-card__details">
+                <span>2014</span>
+                <span aria-hidden="true"> · </span>
+                <span>Фантастика</span>
+            </p>
+          </article>
+        </li>
+
+        <li class="movie-list__item">
+          <article class="movie-card">
+            <div class="movie-card__poster-wrapper">
+              <img
+                class="movie-card__poster"
+                src="./assets/images/posters/interstellar.webp"
+                alt="Постер фильма 'Интерстеллар'"
+                width="300"
+                height="450"
+              />
+
+              <span class="movie-card__rating">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">Рейтинг:</span>
+                8.7
+              </span>
+
+              <button
+                class="movie-card__favorite"
+                type="button"
+                aria-label="Избранное: Интерстеллар"
+                aria-pressed="false"
+              >
+              <span aria-hidden="true">♡</span>
+              </button>
+            </div>
+
+            <h2 class="movie-card__title">Интерстеллар</h2>
+
+            <p class="movie-card__details">
+                <span>2014</span>
+                <span aria-hidden="true"> · </span>
+                <span>Фантастика</span>
+            </p>
+          </article>
+        </li>
+
+        <li class="movie-list__item">
+          <article class="movie-card">
+            <div class="movie-card__poster-wrapper">
+              <img
+                class="movie-card__poster"
+                src="./assets/images/posters/interstellar.webp"
+                alt="Постер фильма 'Интерстеллар'"
+                width="300"
+                height="450"
+              />
+
+              <span class="movie-card__rating">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">Рейтинг:</span>
+                8.7
+              </span>
+
+              <button
+                class="movie-card__favorite"
+                type="button"
+                aria-label="Избранное: Интерстеллар"
+                aria-pressed="false"
+              >
+              <span aria-hidden="true">♡</span>
+              </button>
+            </div>
+
+            <h2 class="movie-card__title">Интерстеллар</h2>
+
+            <p class="movie-card__details">
+                <span>2014</span>
+                <span aria-hidden="true"> · </span>
+                <span>Фантастика</span>
+            </p>
+          </article>
+        </li>
+      </ul>
+    </main>
+
+    <footer class="site-footer">
+        <p class="site-footer__text">КиноПолка · Учебный проект</p>
+    </footer>
+  </body>
+</html>
