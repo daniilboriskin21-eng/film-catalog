@@ -33,7 +33,9 @@
       <p class="headline-caption">Найди кино для своего вечера</p>
 
       <form class="search-form" role="search">
-        <label for="movie-search">Название фильма</label>
+        <label class="visually-hidden" for="movie-search">
+          Название фильма
+          </label>
 
         <input
           class="search-input"
@@ -70,16 +72,53 @@
                 aria-label="Избранное: Интерстеллар"
                 aria-pressed="false"
               >
-              <span aria-hidden="true">♡</span>
+                <span aria-hidden="true">♡</span>
               </button>
             </div>
 
             <h2 class="movie-card__title">Интерстеллар</h2>
 
             <p class="movie-card__details">
-                <span>2014</span>
-                <span aria-hidden="true"> · </span>
-                <span>Фантастика</span>
+              <span>2014</span>
+              <span aria-hidden="true"> · </span>
+              <span>Фантастика</span>
+            </p>
+          </article>
+        </li>
+
+        <li class="movie-list__item">
+          <article class="movie-card">
+            <div class="movie-card__poster-wrapper">
+              <img
+                class="movie-card__poster"
+                src="./assets/images/posters/blade-runner-2049.webp"
+                alt="Постер фильма 'Бегущий по лезвию 2049'"
+                width="300"
+                height="450"
+              />
+
+              <span class="movie-card__rating">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">Рейтинг:</span>
+                8.7
+              </span>
+
+              <button
+                class="movie-card__favorite"
+                type="button"
+                aria-label="Избранное: Бегущий по лезвию 2049"
+                aria-pressed="false"
+              >
+                <span aria-hidden="true">♡</span>
+              </button>
+            </div>
+
+            <h2 class="movie-card__title">Бегущий по лезвию 2049</h2>
+
+            <p class="movie-card__details">
+              <span>2017</span>
+              <span aria-hidden="true"> · </span>
+              <span>Фантастика</span>
             </p>
           </article>
         </li>
@@ -107,16 +146,16 @@
                 aria-label="Избранное: Интерстеллар"
                 aria-pressed="false"
               >
-              <span aria-hidden="true">♡</span>
+                <span aria-hidden="true">♡</span>
               </button>
             </div>
 
             <h2 class="movie-card__title">Интерстеллар</h2>
 
             <p class="movie-card__details">
-                <span>2014</span>
-                <span aria-hidden="true"> · </span>
-                <span>Фантастика</span>
+              <span>2014</span>
+              <span aria-hidden="true"> · </span>
+              <span>Фантастика</span>
             </p>
           </article>
         </li>
@@ -144,16 +183,16 @@
                 aria-label="Избранное: Интерстеллар"
                 aria-pressed="false"
               >
-              <span aria-hidden="true">♡</span>
+                <span aria-hidden="true">♡</span>
               </button>
             </div>
 
             <h2 class="movie-card__title">Интерстеллар</h2>
 
             <p class="movie-card__details">
-                <span>2014</span>
-                <span aria-hidden="true"> · </span>
-                <span>Фантастика</span>
+              <span>2014</span>
+              <span aria-hidden="true"> · </span>
+              <span>Фантастика</span>
             </p>
           </article>
         </li>
@@ -181,16 +220,16 @@
                 aria-label="Избранное: Интерстеллар"
                 aria-pressed="false"
               >
-              <span aria-hidden="true">♡</span>
+                <span aria-hidden="true">♡</span>
               </button>
             </div>
 
             <h2 class="movie-card__title">Интерстеллар</h2>
 
             <p class="movie-card__details">
-                <span>2014</span>
-                <span aria-hidden="true"> · </span>
-                <span>Фантастика</span>
+              <span>2014</span>
+              <span aria-hidden="true"> · </span>
+              <span>Фантастика</span>
             </p>
           </article>
         </li>
@@ -218,53 +257,16 @@
                 aria-label="Избранное: Интерстеллар"
                 aria-pressed="false"
               >
-              <span aria-hidden="true">♡</span>
+                <span aria-hidden="true">♡</span>
               </button>
             </div>
 
             <h2 class="movie-card__title">Интерстеллар</h2>
 
             <p class="movie-card__details">
-                <span>2014</span>
-                <span aria-hidden="true"> · </span>
-                <span>Фантастика</span>
-            </p>
-          </article>
-        </li>
-
-        <li class="movie-list__item">
-          <article class="movie-card">
-            <div class="movie-card__poster-wrapper">
-              <img
-                class="movie-card__poster"
-                src="./assets/images/posters/interstellar.webp"
-                alt="Постер фильма 'Интерстеллар'"
-                width="300"
-                height="450"
-              />
-
-              <span class="movie-card__rating">
-                <span aria-hidden="true">★</span>
-                <span class="visually-hidden">Рейтинг:</span>
-                8.7
-              </span>
-
-              <button
-                class="movie-card__favorite"
-                type="button"
-                aria-label="Избранное: Интерстеллар"
-                aria-pressed="false"
-              >
-              <span aria-hidden="true">♡</span>
-              </button>
-            </div>
-
-            <h2 class="movie-card__title">Интерстеллар</h2>
-
-            <p class="movie-card__details">
-                <span>2014</span>
-                <span aria-hidden="true"> · </span>
-                <span>Фантастика</span>
+              <span>2014</span>
+              <span aria-hidden="true"> · </span>
+              <span>Фантастика</span>
             </p>
           </article>
         </li>
@@ -272,7 +274,7 @@
     </main>
 
     <footer class="site-footer">
-        <p class="site-footer__text">КиноПолка · Учебный проект</p>
+      <p class="site-footer__text">КиноПолка · Учебный проект</p>
     </footer>
   </body>
 </html>
