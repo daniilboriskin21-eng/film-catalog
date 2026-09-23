@@ -31,8 +31,6 @@ function itemsFilter() {
     visibleCount += !isHidden ? 1 : 0;
   });
 
-  console.log(visibleCount);
-
   if (visibleCount === 0) {
     emptyMessage.hidden = false;
     if (currentSearch) {
@@ -59,12 +57,30 @@ function saveFavorites() {
     if (isFavorite) moviesId.push(movie.dataset.movieId);
   });
 
-  localStorage.setItem("film-catalog-favorites", JSON.stringify(moviesId));
+  try {
+    localStorage.setItem("film-catalog-favorites", JSON.stringify(moviesId));
+  } catch (error) {
+    console.warn(
+      "Не удалось сохранить избранное. После перезагрузки последние изменения могут потеряться.",
+      error,
+    );
+  }
 }
 
 function loadFavorites() {
-  const moviesID =
-    JSON.parse(localStorage.getItem("film-catalog-favorites")) ?? [];
+  let moviesID = [];
+
+  try {
+    const lsMoviesID = JSON.parse(
+      localStorage.getItem("film-catalog-favorites"),
+    );
+    if (Array.isArray(lsMoviesID)) moviesID = lsMoviesID;
+  } catch (error) {
+    console.warn(
+      "Не удалось загрузить избранное. Используется пустой список.",
+      error,
+    );
+  }
 
   const movies = document.querySelectorAll(".movie-list__item");
 
