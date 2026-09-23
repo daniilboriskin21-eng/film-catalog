@@ -246,6 +246,13 @@ input:focus-visible {
     }
 }
 
+.empty-message {
+    color: #999fae;
+    text-align: center;
+    padding-block: 40px;
+    margin: 0;
+}
+
 @media (max-width: 360px) {
   .movie-card__rating {
     top: 8px;

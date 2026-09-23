@@ -1,15 +1,50 @@
 let currentMode = "all";
+let currentSearch = "";
+const searchForm = document.querySelector(".search-form");
+const searchInput = document.querySelector(".search-input");
+
+const emptyMessage = document.querySelector(".empty-message");
+
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  currentSearch = searchInput.value.trim().toLowerCase();
+  itemsFilter();
+});
 
 function itemsFilter() {
   const items = document.querySelectorAll(".movie-list__item");
+  let visibleCount = 0;
 
   items.forEach((item) => {
     const button = item.querySelector(".movie-card__favorite");
     const isFavorite = button.getAttribute("aria-pressed") === "true";
-    const isHidden = currentMode === "favorites" && !isFavorite;
+
+    const title = item
+      .querySelector(".movie-card__title")
+      .textContent.toLowerCase();
+
+    const isHidden =
+      (currentMode === "favorites" && !isFavorite) ||
+      !title.includes(currentSearch);
 
     item.hidden = isHidden;
+    visibleCount += !isHidden ? 1 : 0;
   });
+
+  console.log(visibleCount);
+
+  if (visibleCount === 0) {
+    emptyMessage.hidden = false;
+    if (currentSearch) {
+      emptyMessage.textContent = "По вашему запросу ничего не найдено";
+    } else if (currentMode === "favorites") {
+      emptyMessage.textContent = "В избранном пока ничего нет";
+    } else {
+      emptyMessage.textContent = "В каталоге пока нет фильмов";
+    }
+  } else {
+    emptyMessage.hidden = true;
+  }
 }
 
 function saveFavorites() {
