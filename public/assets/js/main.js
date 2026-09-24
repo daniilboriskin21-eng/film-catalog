@@ -2,8 +2,97 @@ let currentMode = "all";
 let currentSearch = "";
 const searchForm = document.querySelector(".search-form");
 const searchInput = document.querySelector(".search-input");
-
 const emptyMessage = document.querySelector(".empty-message");
+const cardTemplate = document
+    .querySelector("#movie-card-template")
+    .content.querySelector(".movie-list__item");
+const movieList = document.querySelector(".movie-list");
+
+const movies = [
+  {
+    id: "1",
+    title: "Интерстеллар",
+    year: 2014,
+    genre: "Фантастика",
+    rating: 8.7,
+    poster: "./assets/images/posters/interstellar.webp",
+  },
+  {
+    id: "2",
+    title: "Бегущий по лезвию 2049",
+    year: 2017,
+    genre: "Фантастика",
+    rating: 8.7,
+    poster: "./assets/images/posters/blade-runner-2049.webp",
+  },
+  {
+    id: "3",
+    title: "Интерстеллар",
+    year: 2014,
+    genre: "Фантастика",
+    rating: 8.7,
+    poster: "./assets/images/posters/interstellar.webp",
+  },
+  {
+    id: "4",
+    title: "Интерстеллар",
+    year: 2014,
+    genre: "Фантастика",
+    rating: 8.7,
+    poster: "./assets/images/posters/interstellar.webp",
+  },
+  {
+    id: "5",
+    title: "Интерстеллар",
+    year: 2014,
+    genre: "Фантастика",
+    rating: 8.7,
+    poster: "./assets/images/posters/interstellar.webp",
+  },
+  {
+    id: "6",
+    title: "Интерстеллар",
+    year: 2014,
+    genre: "Фантастика",
+    rating: 8.7,
+    poster: "./assets/images/posters/interstellar.webp",
+  },
+];
+
+function createMovieCard(movie) {
+  const card = cardTemplate.cloneNode(true);
+
+  card.dataset.movieId = movie.id;
+  
+  const titleElement = card.querySelector(".movie-card__title");
+  titleElement.textContent = movie.title;
+
+  const yearElement = card.querySelector(".movie-card__year");
+  yearElement.textContent = movie.year;
+
+  const genreElement = card.querySelector(".movie-card__genre");
+  genreElement.textContent = movie.genre;
+
+  const ratingValueElement = card.querySelector(".movie-card__rating-value");
+  ratingValueElement.textContent = movie.rating;
+
+  const posterElement = card.querySelector(".movie-card__poster");
+  posterElement.src = movie.poster;
+  posterElement.alt = "Постер фильма " + movie.title;
+
+  const buttonElement = card.querySelector(".movie-card__favorite");
+  buttonElement.setAttribute("aria-label", "Избранное: " + movie.title);
+
+  return card;
+}
+
+function renderMovies() {
+  movieList.replaceChildren();
+
+  movies.forEach((movie) => {
+    movieList.append(createMovieCard(movie));
+  })
+}
 
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -48,9 +137,9 @@ function itemsFilter() {
 function saveFavorites() {
   const moviesId = [];
 
-  const movies = document.querySelectorAll(".movie-list__item");
+  const movieItems = document.querySelectorAll(".movie-list__item");
 
-  movies.forEach((movie) => {
+  movieItems.forEach((movie) => {
     const button = movie.querySelector(".movie-card__favorite");
     const isFavorite = button.getAttribute("aria-pressed") === "true";
 
@@ -82,9 +171,9 @@ function loadFavorites() {
     );
   }
 
-  const movies = document.querySelectorAll(".movie-list__item");
+  const movieItems = document.querySelectorAll(".movie-list__item");
 
-  movies.forEach((movie) => {
+  movieItems.forEach((movie) => {
     const button = movie.querySelector(".movie-card__favorite");
     const icon = button.querySelector("span");
     if (moviesID.includes(movie.dataset.movieId)) {
@@ -113,6 +202,8 @@ modeButton.forEach((button) => {
     itemsFilter();
   });
 });
+
+renderMovies();
 
 const favoriteButton = document.querySelectorAll(".movie-card__favorite");
 
