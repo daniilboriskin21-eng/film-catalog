@@ -1,4 +1,3 @@
-import { movies } from "./movies.js";
 import renderMovies from "./cards.js";
 import {
   updateFavoriteCount,
@@ -18,6 +17,45 @@ searchForm.addEventListener("submit", (event) => {
   itemsFilter(currentMode, currentSearch);
 });
 
+async function loadMovies() {
+  try {
+    const response = await fetch("/api/movies.php");
+
+    if (!response.ok) {
+      throw new Error(`Статус ответа ${response.status}`);
+    }
+
+    const loadedMovies = await response.json();
+
+    renderMovies(loadedMovies);
+
+    const favoriteButtons = document.querySelectorAll(".movie-card__favorite");
+
+    favoriteButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const isFavorite = button.getAttribute("aria-pressed") === "true";
+
+        button.setAttribute("aria-pressed", String(!isFavorite));
+
+        const icon = button.querySelector("span");
+        icon.textContent = isFavorite ? "♡" : "♥";
+
+        updateFavoriteCount();
+
+        itemsFilter(currentMode, currentSearch);
+
+        saveFavorites();
+      });
+    });
+
+    loadFavorites();
+    updateFavoriteCount();
+    itemsFilter(currentMode, currentSearch);
+  } catch (error) {
+    console.error("Не удалось загрузить фильмы", error);
+  }
+}
+
 const modeButtons = document.querySelectorAll(".catalog-nav__button");
 
 modeButtons.forEach((button) => {
@@ -35,27 +73,4 @@ modeButtons.forEach((button) => {
   });
 });
 
-renderMovies(movies);
-
-const favoriteButtons = document.querySelectorAll(".movie-card__favorite");
-
-favoriteButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const isFavorite = button.getAttribute("aria-pressed") === "true";
-
-    button.setAttribute("aria-pressed", String(!isFavorite));
-
-    const icon = button.querySelector("span");
-    icon.textContent = isFavorite ? "♡" : "♥";
-
-    updateFavoriteCount();
-
-    itemsFilter(currentMode, currentSearch);
-
-    saveFavorites();
-  });
-});
-
-loadFavorites();
-updateFavoriteCount();
-itemsFilter(currentMode, currentSearch);
+loadMovies();
