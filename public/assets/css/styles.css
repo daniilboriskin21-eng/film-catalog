@@ -253,6 +253,16 @@ input:focus-visible {
     margin: 0;
 }
 
+.catalog-status {
+    color: #999fae;
+    text-align: center;
+    margin: 0;
+}
+
+.catalog-status:not(:empty) {
+    padding-block: 24px;
+}
+
 @media (max-width: 360px) {
   .movie-card__rating {
     top: 8px;

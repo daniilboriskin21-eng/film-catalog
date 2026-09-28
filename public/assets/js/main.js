@@ -6,6 +6,9 @@ import {
 } from "./favorites.js";
 import { itemsFilter } from "./filters.js";
 
+const catalogStatus = document.querySelector(".catalog-status");
+let isCatalogReady = false;
+
 let currentMode = "all";
 let currentSearch = "";
 const searchForm = document.querySelector(".search-form");
@@ -14,10 +17,14 @@ const searchInput = document.querySelector(".search-input");
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
   currentSearch = searchInput.value.trim().toLowerCase();
-  itemsFilter(currentMode, currentSearch);
+  if (isCatalogReady) {
+    itemsFilter(currentMode, currentSearch);
+  }
 });
 
 async function loadMovies() {
+  isCatalogReady = false;
+  catalogStatus.textContent = "Загружаем фильмы...";
   try {
     const response = await fetch("/api/movies.php");
 
@@ -50,9 +57,15 @@ async function loadMovies() {
 
     loadFavorites();
     updateFavoriteCount();
+
+    isCatalogReady = true;
+    catalogStatus.textContent = "";
+
     itemsFilter(currentMode, currentSearch);
   } catch (error) {
     console.error("Не удалось загрузить фильмы", error);
+    catalogStatus.textContent =
+      "Не удалось загрузить фильмы. Попробуйте обновить страницу.";
   }
 }
 
@@ -68,8 +81,9 @@ modeButtons.forEach((button) => {
         currentMode === element.dataset.filter,
       );
     });
-
-    itemsFilter(currentMode, currentSearch);
+    if (isCatalogReady) {
+      itemsFilter(currentMode, currentSearch);
+    }
   });
 });
 
