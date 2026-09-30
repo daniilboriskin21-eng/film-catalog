@@ -49,3 +49,27 @@ VALUES
         8.7,
         './assets/images/posters/teenage-mutant-ninja-turtles.webp'
     ) ON CONFLICT (id) DO NOTHING;
+
+UPDATE movies
+SET "description" = 'Отец летит к звёздам ради будущего детей — и всего человечества. Космическая одиссея Кристофера Нолана'
+WHERE id = 1 AND "description" = '';
+
+UPDATE movies
+SET "description" = 'Полицейский ищет Рика Декарда, пропавшего 30 лет назад. Красивый сиквел культового сай-фая от Дени Вильнёва'
+WHERE id = 2 AND "description" = '';
+
+UPDATE movies
+SET "description" = 'Люди сражаются с титанами, которые мечтают их съесть. Самое эпичное аниме современности'
+WHERE id = 3 AND "description" = '';
+
+UPDATE movies
+SET "description" = 'Американцы знакомятся с Данилой Багровым и узнают, в чём сила. Сиквел о герое времени с мощным рок-саундтреком'
+WHERE id = 4 AND "description" = '';
+
+UPDATE movies
+SET "description" = 'Укус паука — и жизнь подростка меняется навсегда. Первая часть супергеройской дилогии с Эндрю Гарфилдом'
+WHERE id = 5 AND "description" = '';
+
+UPDATE movies
+SET "description" = 'Черепашки спасают мир от ядовитого мутагена. Бодрая экранизация боевика о приключениях героев из канализации'
+WHERE id = 6 AND "description" = '';

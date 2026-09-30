@@ -19,6 +19,5 @@ try {
 } catch (Throwable $error) {
     http_response_code(500);
     error_log($error->getMessage());
-
     echo json_encode(["error" => "Не удалось загрузить фильмы"], JSON_UNESCAPED_UNICODE);
 }
