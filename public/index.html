@@ -18,11 +18,21 @@
       <a class="logo" href="./index.html">КиноПолка</a>
 
       <nav class="catalog-nav" aria-label="Разделы каталога">
-        <button class="catalog-nav__button" type="button" aria-pressed="true" data-filter="all">
+        <button
+          class="catalog-nav__button"
+          type="button"
+          aria-pressed="true"
+          data-filter="all"
+        >
           Все фильмы
         </button>
 
-        <button class="catalog-nav__button" type="button" aria-pressed="false" data-filter="favorites">
+        <button
+          class="catalog-nav__button"
+          type="button"
+          aria-pressed="false"
+          data-filter="favorites"
+        >
           Избранное <span class="favorites-count">0</span>
         </button>
       </nav>
@@ -35,7 +45,7 @@
       <form class="search-form" role="search">
         <label class="visually-hidden" for="movie-search">
           Название фильма
-          </label>
+        </label>
 
         <input
           class="search-input"
@@ -51,20 +61,21 @@
 
       <p class="catalog-status" role="status"></p>
 
-      <ul class="movie-list">
-      </ul>
+      <ul class="movie-list"></ul>
 
       <template id="movie-card-template">
         <li class="movie-list__item" data-movie-id="1">
           <article class="movie-card">
             <div class="movie-card__poster-wrapper">
-              <img
-                class="movie-card__poster"
-                src="./assets/images/posters/interstellar.webp"
-                alt="Постер фильма 'Интерстеллар'"
-                width="300"
-                height="450"
-              />
+              <a class="movie-card__poster-link">
+                <img
+                  class="movie-card__poster"
+                  src="./assets/images/posters/interstellar.webp"
+                  alt="Постер фильма 'Интерстеллар'"
+                  width="300"
+                  height="450"
+                />
+              </a>
 
               <span class="movie-card__rating">
                 <span aria-hidden="true">★</span>
@@ -82,7 +93,9 @@
               </button>
             </div>
 
-            <h2 class="movie-card__title">Интерстеллар</h2>
+            <h2 class="movie-card__title">
+              <a class="movie-card__link">Интерстеллар</a>
+            </h2>
 
             <p class="movie-card__details">
               <span class="movie-card__year">2014</span>

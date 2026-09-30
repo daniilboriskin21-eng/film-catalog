@@ -8,8 +8,9 @@ function createMovieCard(movie) {
 
   card.dataset.movieId = movie.id;
 
-  const titleElement = card.querySelector(".movie-card__title");
-  titleElement.textContent = movie.title;
+  const linkElement = card.querySelector(".movie-card__link");
+  linkElement.textContent = movie.title;
+  linkElement.href = `./movie.html?id=${encodeURIComponent(movie.id)}`;
 
   const yearElement = card.querySelector(".movie-card__year");
   yearElement.textContent = movie.year;
@@ -23,6 +24,9 @@ function createMovieCard(movie) {
   const posterElement = card.querySelector(".movie-card__poster");
   posterElement.src = movie.poster;
   posterElement.alt = "Постер фильма " + movie.title;
+
+  const posterLinkElement = card.querySelector(".movie-card__poster-link");
+  posterLinkElement.href = `./movie.html?id=${encodeURIComponent(movie.id)}`;
 
   const buttonElement = card.querySelector(".movie-card__favorite");
   buttonElement.setAttribute("aria-label", "Избранное: " + movie.title);

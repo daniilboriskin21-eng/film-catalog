@@ -1,0 +1,66 @@
+const params = new URLSearchParams(window.location.search);
+const movieId = params.get("id");
+
+const movieStatus = document.querySelector(".movie-status");
+
+async function loadMovie() {
+  if (!movieId) {
+    movieStatus.textContent = "Не указан идентификатор фильма";
+    return;
+  }
+  movieStatus.textContent = "Загружаем фильм...";
+  try {
+    const response = await fetch(
+      `/api/movie.php?id=${encodeURIComponent(movieId)}`,
+    );
+
+    if (response.status === 400) {
+      movieStatus.textContent = "Некорректный идентификатор фильма";
+      return;
+    }
+    if (response.status === 404) {
+      movieStatus.textContent = "Фильм не найден";
+      return;
+    }
+    if (!response.ok) {
+      throw new Error(`Статус ответа ${response.status}`);
+    }
+
+    const loadedMovie = await response.json();
+    renderMovie(loadedMovie);
+
+    movieStatus.textContent = "";
+  } catch (error) {
+    console.error("Не удалось загрузить фильм", error);
+    movieStatus.textContent =
+      "Не удалось загрузить фильм. Попробуйте обновить страницу.";
+  }
+}
+
+function renderMovie(movie) {
+  const movieDetails = document.querySelector(".movie-details");
+
+  const titleElement = movieDetails.querySelector(".movie-details__title");
+  titleElement.textContent = movie.title;
+
+  const yearElement = movieDetails.querySelector(".movie-details__year");
+  yearElement.textContent = movie.year;
+
+  const genreElement = movieDetails.querySelector(".movie-details__genre");
+  genreElement.textContent = movie.genre;
+
+  const ratingElement = movieDetails.querySelector(".movie-details__rating");
+  ratingElement.textContent = "Рейтинг: " + movie.rating;
+
+  const descriptionElement = movieDetails.querySelector(".movie-details__description");
+  descriptionElement.textContent = movie.description;
+
+  const posterElement = movieDetails.querySelector(".movie-details__poster");
+  posterElement.src = movie.poster;
+  posterElement.alt = "Постер фильма " + movie.title;
+
+  document.title = movie.title + " - КиноПолка";
+  movieDetails.hidden = false;
+}
+
+loadMovie();

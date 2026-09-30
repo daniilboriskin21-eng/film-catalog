@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Фильм - КиноПолка</title>
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script src="./assets/js/movie.js" type="module"></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo" href="./index.html">КиноПолка</a>
+    </header>
+
+    <main class="main-content">
+      <a class="back-link" href="./index.html">← К каталогу</a>
+
+      <p class="movie-status" role="status"></p>
+
+      <article class="movie-details" hidden>
+        <img class="movie-details__poster" alt="" width="300" height="450" />
+
+        <div class="movie-details__content">
+          <h1 class="movie-details__title"></h1>
+
+          <p class="movie-details__meta">
+            <span class="movie-details__year"></span>
+            <span class="movie-details__genre"></span>
+            <span class="movie-details__rating"></span>
+          </p>
+
+          <p class="movie-details__description"></p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__text">КиноПолка · Учебный проект</p>
+    </footer>
+  </body>
+</html>
