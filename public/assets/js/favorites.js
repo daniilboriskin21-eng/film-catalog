@@ -10,42 +10,8 @@ export function updateFavoriteCount() {
   favoriteCount.textContent = String(count);
 }
 
-export function saveFavorites() {
-  const moviesId = [];
-
-  const movieItems = document.querySelectorAll(".movie-list__item");
-
-  movieItems.forEach((movie) => {
-    const button = movie.querySelector(".movie-card__favorite");
-    const isFavorite = button.getAttribute("aria-pressed") === "true";
-
-    if (isFavorite) moviesId.push(movie.dataset.movieId);
-  });
-
-  try {
-    localStorage.setItem("film-catalog-favorites", JSON.stringify(moviesId));
-  } catch (error) {
-    console.warn(
-      "Не удалось сохранить избранное. После перезагрузки последние изменения могут потеряться.",
-      error,
-    );
-  }
-}
-
 export function loadFavorites() {
-  let moviesID = [];
-
-  try {
-    const lsMoviesID = JSON.parse(
-      localStorage.getItem("film-catalog-favorites"),
-    );
-    if (Array.isArray(lsMoviesID)) moviesID = lsMoviesID;
-  } catch (error) {
-    console.warn(
-      "Не удалось загрузить избранное. Используется пустой список.",
-      error,
-    );
-  }
+  const moviesID = getFavoriteIds();
 
   const movieItems = document.querySelectorAll(".movie-list__item");
 
@@ -61,3 +27,49 @@ export function loadFavorites() {
     }
   });
 }
+
+export function getFavoriteIds() {
+  let moviesID = [];
+
+  try {
+    const lsMoviesID = JSON.parse(
+      localStorage.getItem("film-catalog-favorites"),
+    );
+    if (Array.isArray(lsMoviesID)) moviesID = lsMoviesID;
+  } catch (error) {
+    console.warn(
+      "Не удалось загрузить избранное. Используется пустой список.",
+      error,
+    );
+  }
+
+  return moviesID;
+}
+
+export function setFavoriteIds(ids) {
+  try {
+    localStorage.setItem("film-catalog-favorites", JSON.stringify(ids));
+  } catch (error) {
+    console.warn(
+      "Не удалось сохранить избранное. После перезагрузки последние изменения могут потеряться.",
+      error,
+    );
+  }
+}
+
+export function toggleFavorite(movieId) {
+  movieId = String(movieId);
+  let moviesIds = getFavoriteIds();
+  let adding;
+
+  if (moviesIds.includes(movieId)) {
+    moviesIds = moviesIds.filter((id) => id !== movieId);
+    adding = false;
+  } else {
+    moviesIds.push(movieId);
+    adding = true;
+  }
+
+  setFavoriteIds(moviesIds);
+  return adding;
+} 

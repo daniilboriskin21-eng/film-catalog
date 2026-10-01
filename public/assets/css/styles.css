@@ -300,6 +300,21 @@ input:focus-visible {
   color: #f5b84b;
 }
 
+.movie-details__favorite {
+  margin-top: 24px;
+  padding: 12px 20px;
+  border: 1px solid #f5b84b;
+  border-radius: 10px;
+  background-color: #f5b84b;
+  color: #111318;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.movie-details__favorite[aria-pressed="true"] {
+  background-color: transparent;
+  color: #f5b84b;
+}
 
 @media (max-width: 700px) {
   .movie-list {

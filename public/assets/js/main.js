@@ -1,7 +1,7 @@
 import renderMovies from "./cards.js";
 import {
   updateFavoriteCount,
-  saveFavorites,
+  toggleFavorite,
   loadFavorites,
 } from "./favorites.js";
 import { itemsFilter } from "./filters.js";
@@ -40,18 +40,19 @@ async function loadMovies() {
 
     favoriteButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        const isFavorite = button.getAttribute("aria-pressed") === "true";
+        const movieItem = button.closest(".movie-list__item");
 
-        button.setAttribute("aria-pressed", String(!isFavorite));
+        const movieId = movieItem.dataset.movieId;
+        const isFavorite = toggleFavorite(movieId);
+                
+        button.setAttribute("aria-pressed", String(isFavorite));
 
         const icon = button.querySelector("span");
-        icon.textContent = isFavorite ? "♡" : "♥";
+        icon.textContent = isFavorite ? "♥" : "♡";
 
         updateFavoriteCount();
 
         itemsFilter(currentMode, currentSearch);
-
-        saveFavorites();
       });
     });
 
