@@ -23,6 +23,11 @@ if (!in_array('description', $columnNames, true)) {
     echo "Стоблец description добавлен" . PHP_EOL;
 }
 
+$sqlMigration002 = file_get_contents(__DIR__ . '/migrations/002_create_admins.sql');
+
+if ($sqlMigration002 === false) throw new Exception("Не удалось создать таблицу admins");
+$pdo->exec($sqlMigration002);
+echo "Таблица admins готова" . PHP_EOL;
 
 $seedSql = file_get_contents(__DIR__ . '/seed.sql');
 

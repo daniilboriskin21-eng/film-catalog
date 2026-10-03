@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вход администратора — КиноПолка</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="./index.html">КиноПолка</a>
+    </header>
+
+    <main class="main-content">
+      <h1 class="headline">Вход администратора</h1>
+
+      <form class="login-form movie-form" method="POST">
+        <div class="form-field">
+          <label for="username">Логин:</label>
+          <input
+            class="form-input"
+            type="text"
+            id="username"
+            name="username"
+            autocomplete="username"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="password">Пароль:</label>
+          <input
+            class="form-input"
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+
+        <button class="login-form__submit" type="submit">Войти</button>
+        <p class="form-status" role="status"></p>
+      </form>
+    </main>
+    <footer class="site-footer">
+      <p class="site-footer__text">КиноПолка · Учебный проект</p>
+    </footer>
+  </body>
+</html>

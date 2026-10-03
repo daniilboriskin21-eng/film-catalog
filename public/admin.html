@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавить фильм - КиноПолка</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="./index.html">КиноПолка</a>
+    </header>
+
+    <main class="main-content">
+      <h1 class="headline">Добавить фильм</h1>
+
+      <form class="movie-form">
+        <div class="form-field">
+          <label for="title">Название фильма:</label>
+          <input
+            class="form-input"
+            type="text"
+            id="title"
+            name="title"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="year">Год выпуска:</label>
+          <input
+            class="form-input"
+            type="number"
+            id="year"
+            name="year"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="genre">Жанр:</label>
+          <input
+            class="form-input"
+            type="text"
+            id="genre"
+            name="genre"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="rating">Рейтинг:</label>
+          <input
+            class="form-input"
+            type="number"
+            id="rating"
+            name="rating"
+            min="0"
+            max="10"
+            step="0.1"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="poster">Путь к постеру:</label>
+          <input
+            class="form-input"
+            type="text"
+            id="poster"
+            name="poster"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="description">Описание:</label>
+          <textarea
+            class="form-input"
+            id="description"
+            name="description"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+
+        <button class="movie-form__submit" type="submit">Добавить фильм</button>
+        <p class="form-status" role="status"></p>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__text">КиноПолка · Учебный проект</p>
+    </footer>
+  </body>
+</html>
