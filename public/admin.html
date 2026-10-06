@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Добавить фильм - КиноПолка</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script src="./assets/js/admin.js" type="module"></script>
   </head>
   <body>
     <header class="site-header">
       <a class="logo" href="./index.html">КиноПолка</a>
+
+      <button class="logout-button" type="button" hidden>Выйти</button>
     </header>
 
     <main class="main-content">
       <h1 class="headline">Добавить фильм</h1>
 
-      <form class="movie-form">
+      <p class="auth-status" role="status">Проверяем авторизацию…</p>
+
+      <form class="movie-form" hidden>
         <div class="form-field">
           <label for="title">Название фильма:</label>
           <input

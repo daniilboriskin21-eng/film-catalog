@@ -103,7 +103,7 @@ img {
 }
 
 .movie-card__poster-link {
-    display: block;
+  display: block;
 }
 
 .movie-card__rating {
@@ -148,12 +148,12 @@ img {
 }
 
 .movie-card__link {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .movie-card__link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .movie-card__details {
@@ -294,7 +294,7 @@ textarea:focus-visible {
 }
 
 .movie-status:not(:empty) {
-    padding-block: 24px;
+  padding-block: 24px;
 }
 
 .back-link {
@@ -317,7 +317,7 @@ textarea:focus-visible {
   color: #f5b84b;
 }
 
-.movie-form {
+.movie-form:not([hidden]) {
   max-width: 640px;
   margin-top: 32px;
   display: grid;
@@ -358,6 +358,33 @@ textarea.form-input {
 .form-status {
   margin: 0;
   color: #999fae;
+}
+
+.auth-status:not([hidden]) {
+  margin: 20px 0 0;
+  color: #999fae;
+}
+
+.logout-button {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: 1px solid #30343f;
+  border-radius: 10px;
+  background: transparent;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.logout-button:hover:not([disabled]) {
+  background-color: #1b1e26;
+  border-color: #f5b84b;
+}
+
+.logout-button[disabled],
+.login-form__submit[disabled],
+.movie-form__submit[disabled] {
+  opacity: 0.5;
+  cursor: wait;
 }
 
 @media (max-width: 700px) {
