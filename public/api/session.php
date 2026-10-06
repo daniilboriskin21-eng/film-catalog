@@ -21,7 +21,10 @@ try {
 
     if (isset($_SESSION['admin_id'])) {
         echo json_encode(
-            ['authenticated' => true],
+            [
+                'authenticated' => true,
+                'csrfToken' => $_SESSION['csrf_token'] ?? null,
+            ],
             JSON_UNESCAPED_UNICODE
         );
     } else {

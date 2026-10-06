@@ -46,6 +46,7 @@ try {
     } else {
         session_regenerate_id(true);
         $_SESSION['admin_id'] = (int) $admin['id'];
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         echo json_encode(["message" => "Авторизация успешна"], JSON_UNESCAPED_UNICODE);
     }
 } catch (Throwable $error) {
