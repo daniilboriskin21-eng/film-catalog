@@ -1,0 +1,47 @@
+.movie-form:not([hidden]) {
+  max-width: 640px;
+  margin-top: 32px;
+  display: grid;
+  gap: 20px;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #30343f;
+  border-radius: 10px;
+  background-color: #1b1e26;
+  color: #f3f4f6;
+  font: inherit;
+}
+
+textarea.form-input {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.login-form__submit,
+.movie-form__submit {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #f5b84b;
+  color: #111318;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-status {
+  margin: 0;
+  color: #999fae;
+}
+
+.auth-status:not([hidden]) {
+  margin: 20px 0 0;
+  color: #999fae;
+}
