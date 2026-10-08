@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Добавить фильм - КиноПолка</title>
+    <title>Редактировать фильм - КиноПолка</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
-    <script src="./assets/js/admin.js" type="module"></script>
+    <script src="./assets/js/edit_movie.js" type="module"></script>
   </head>
   <body>
     <header class="site-header">
@@ -15,7 +15,8 @@
     </header>
 
     <main class="main-content">
-      <h1 class="headline">Добавить фильм</h1>
+      <h1 class="headline">Редактировать фильм</h1>
+      <a class="back-link" href="./admin.html">Назад к управлению фильмами</a>
 
       <p class="auth-status" role="status">Проверяем авторизацию…</p>
 
@@ -89,30 +90,10 @@
           ></textarea>
         </div>
 
-        <button class="movie-form__submit" type="submit">Добавить фильм</button>
-        <p class="form-status" role="status"></p>
-        <a class="created-movie-link" hidden>Открыть фильм</a>
+        <button class="movie-form__submit" type="submit">Сохранить изменения</button>
       </form>
 
-      <section class="admin-movies" hidden>
-        <h2 class="admin-movies__headline">Управление фильмами</h2>
-        <p class="admin-movies__status" role="status"></p>
-        <ul class="admin-movies__list"></ul>
-
-        <template class="admin-movie-template">
-          <li class="admin-movie">
-            <h3 class="admin-movie__title">
-              <a class="admin-movie__link"></a>
-            </h3>
-            <span class="admin-movie__year"></span>
-            <span class="admin-movie__genre"></span>
-
-            <span class="admin-movie__actions">
-              <a class="admin-movie__edit-link">Редактировать</a>
-            </span>
-          </li>
-        </template>
-      </section>
+      <p class="form-status" role="status"></p>
     </main>
 
     <footer class="site-footer">

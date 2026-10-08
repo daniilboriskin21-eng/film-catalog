@@ -392,6 +392,62 @@ textarea.form-input {
   color: #f5b84b;
 }
 
+.admin-movies {
+  margin-top: 48px;
+}
+
+.admin-movies__headline {
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+
+.admin-movies__status {
+  margin: 0;
+  color: #999fae;
+}
+
+.admin-movies__status:not(:empty) {
+  margin-bottom: 16px;
+}
+
+.admin-movies__list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-movie {
+  padding: 16px;
+  background-color: #1b1e26;
+  border: 1px solid #30343f;
+  border-radius: 12px;
+}
+
+.admin-movie__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.admin-movie__link {
+  color: #f5b84b;
+}
+
+.admin-movie__year, .admin-movie__genre {
+  margin: 0;
+  color: #999fae;
+  font-size: 14px;
+}
+
+.admin-movie__year {
+  margin-right: 12px;
+}
+
+.admin-movie__edit-link {
+  color: #f5b84b;
+}
+
 @media (max-width: 700px) {
   .movie-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));

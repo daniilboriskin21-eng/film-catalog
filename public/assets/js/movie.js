@@ -1,4 +1,5 @@
 import { getFavoriteIds, toggleFavorite } from "./favorites.js";
+import { getMovie } from "./api.js";
 
 const favoriteButton = document.querySelector(".movie-details__favorite");
 
@@ -21,23 +22,7 @@ async function loadMovie() {
   }
   movieStatus.textContent = "Загружаем фильм...";
   try {
-    const response = await fetch(
-      `/api/movie.php?id=${encodeURIComponent(movieId)}`,
-    );
-
-    if (response.status === 400) {
-      movieStatus.textContent = "Некорректный идентификатор фильма";
-      return;
-    }
-    if (response.status === 404) {
-      movieStatus.textContent = "Фильм не найден";
-      return;
-    }
-    if (!response.ok) {
-      throw new Error(`Статус ответа ${response.status}`);
-    }
-
-    const loadedMovie = await response.json();
+    const loadedMovie = await getMovie(movieId);
     renderMovie(loadedMovie);
 
     favoriteButton.addEventListener("click", () => {
@@ -48,8 +33,10 @@ async function loadMovie() {
     movieStatus.textContent = "";
   } catch (error) {
     console.error("Не удалось загрузить фильм", error);
-    movieStatus.textContent =
-      "Не удалось загрузить фильм. Попробуйте обновить страницу.";
+    if (error instanceof TypeError)
+      movieStatus.textContent =
+        "Не удалось загрузить фильм. Попробуйте обновить страницу";
+    else movieStatus.textContent = error.message;
   }
 }
 
