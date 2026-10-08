@@ -1,3 +1,7 @@
+import { getMovies, createMovie } from "./api.js";
+import { checkAuth, setupLogout } from "./auth.js";
+import { setFormPending } from "./movie-form.js";
+
 const authStatus = document.querySelector(".auth-status");
 const movieForm = document.querySelector(".movie-form");
 const logoutButton = document.querySelector(".logout-button");
@@ -12,13 +16,7 @@ const adminMovieTemplate = document.querySelector(".admin-movie-template");
 async function loadAdminMovies() {
   try {
     adminMoviesStatus.textContent = "Загрузка фильмов...";
-    const response = await fetch("/api/movies.php");
-    if (response.ok === false) {
-      adminMoviesStatus.textContent =
-        "Ошибка загрузки фильмов. Пожалуйста, попробуйте позже.";
-      return;
-    }
-    const movies = await response.json();
+    const movies = await getMovies();
     renderAdminMovies(movies);
     if (movies.length === 0) {
       adminMoviesStatus.textContent = "Фильмы не найдены.";
@@ -48,104 +46,41 @@ function renderAdminMovies(movies) {
 
 let csrfToken = null;
 
-logoutButton.addEventListener("click", async () => {
-  logoutButton.disabled = true;
-  try {
-    const response = await fetch("/api/logout.php", { method: "POST" });
-    if (response.ok === false) {
-      authStatus.textContent =
-        "Ошибка выхода из системы. Пожалуйста, попробуйте позже.";
-      authStatus.hidden = false;
-      return;
-    }
-    if (response.ok) {
-      window.location.replace("/login.html");
-    }
-  } catch (error) {
-    authStatus.textContent =
-      "Не удалось выполнить выход. Пожалуйста, попробуйте позже.";
-    authStatus.hidden = false;
-    return;
-  } finally {
-    logoutButton.disabled = false;
-  }
-});
-
 movieForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   createdMovieLink.hidden = true;
 
   const formData = new FormData(movieForm);
-  const submitButton = movieForm.querySelector(".movie-form__submit");
-
-  submitButton.disabled = true;
-  submitButton.textContent = "Добавляем...";
+  const restoreButton = setFormPending(movieForm, "Добавляем...");
   formStatus.textContent = "Сохраняем фильм...";
 
   try {
-    const response = await fetch("./api/create_movie.php", {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": csrfToken,
-      },
-      body: formData,
-    });
+    const data = await createMovie(formData, csrfToken);
 
-    const data = await response.json();
+    formStatus.textContent = data.message;
+    movieForm.reset();
 
-    if (response.ok === false) {
-      formStatus.textContent = data.error;
-    } else {
-      formStatus.textContent = data.message;
-      movieForm.reset();
+    createdMovieLink.href = `./movie.html?id=${data.id}`;
+    createdMovieLink.hidden = false;
 
-      createdMovieLink.href = `./movie.html?id=${data.id}`;
-      createdMovieLink.hidden = false;
-
-      loadAdminMovies();
-    }
+    loadAdminMovies();
   } catch (error) {
-    formStatus.textContent = "Не удалось отправить форму";
+    formStatus.textContent = error instanceof TypeError ? "Не удалось отправить форму" : error.message;
   } finally {
-    submitButton.disabled = false;
-
-    submitButton.textContent = "Добавить фильм";
+    restoreButton();
   }
 });
 
-async function checkAuth() {
-  try {
-    const response = await fetch("/api/session.php");
-    if (response.ok === false) {
-      authStatus.textContent =
-        "Ошибка проверки авторизации. Пожалуйста, попробуйте позже.";
-      return;
-    }
-    const data = await response.json();
-    if (data.authenticated === false) {
-      window.location.replace("/login.html");
-      return;
-    }
-    if (data.authenticated === true) {
-      if (typeof data.csrfToken === "string" && data.csrfToken.length > 0) {
-        csrfToken = data.csrfToken;
-      } else {
-        logoutButton.hidden = false;
-        authStatus.textContent = "Выйдите и войдите снова, чтобы продолжить";
-        return;
-      }
-      movieForm.hidden = false;
-      authStatus.hidden = true;
-      logoutButton.hidden = false;
-      adminMovies.hidden = false;
-      loadAdminMovies();
-    }
-  } catch (error) {
-    authStatus.textContent =
-      "Не удалось проверить авторизацию. Обновите страницу";
-    authStatus.hidden = false;
-  }
+setupLogout(logoutButton, authStatus);
+
+async function init() {
+  csrfToken = await checkAuth(authStatus, logoutButton);
+  if (!csrfToken) return;
+  movieForm.hidden = false;
+  authStatus.hidden = true;
+  adminMovies.hidden = false;
+  await loadAdminMovies();
 }
 
-checkAuth();
+init();
