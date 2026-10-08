@@ -72,4 +72,14 @@ export function toggleFavorite(movieId) {
 
   setFavoriteIds(moviesIds);
   return adding;
-} 
+}
+
+export function pruneFavorites(movies) {
+  const movieIds = movies.map((movie) => String(movie.id));
+
+  const favorites = getFavoriteIds();
+
+  const newFavorites = favorites.filter((id) => movieIds.includes(id));
+
+  if (newFavorites.length < favorites.length) setFavoriteIds(newFavorites);
+}

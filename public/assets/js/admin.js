@@ -1,4 +1,4 @@
-import { getMovies, createMovie } from "./api.js";
+import { getMovies, createMovie, deleteMovie } from "./api.js";
 import { checkAuth, setupLogout } from "./auth.js";
 import { setFormPending } from "./movie-form.js";
 
@@ -40,6 +40,26 @@ function renderAdminMovies(movies) {
     movieElement.querySelector(".admin-movie__genre").textContent = movie.genre;
     movieElement.querySelector(".admin-movie__edit-link").href =
       `./edit_movie.html?id=${movie.id}`;
+
+    const deleteButton = movieElement.querySelector(".admin-movie__delete")
+    deleteButton.addEventListener("click", async () => {
+      const confirmed = window.confirm(`Удалить фильм "${movie.title}"?`);
+      if (!confirmed) return;
+
+      deleteButton.disabled = true;
+      deleteButton.textContent = "Удаляем...";
+
+      try {
+        const data = await deleteMovie(movie.id, csrfToken);
+        await loadAdminMovies();
+        formStatus.textContent = data.message;
+      } catch (error) {
+        formStatus.textContent = error instanceof TypeError ? "Не удалось удалить фильм. Попробуйте еще раз" : error.message;
+      } finally{
+        deleteButton.disabled = false;
+        deleteButton.textContent = "Удалить";
+      }
+    })
     adminMoviesList.append(movieElement);
   });
 }

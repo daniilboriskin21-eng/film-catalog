@@ -59,9 +59,10 @@
   display: flex;
   gap: 12px;
   margin-top: 16px;
+  flex-wrap: wrap;
 }
 
-.admin-movie__edit-link {
+.admin-movie__edit-link, .admin-movie__delete {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -75,4 +76,21 @@
 .admin-movie__edit-link:hover {
   background-color: #111318;
   border-color: #f5b84b;
+}
+
+.admin-movie__delete {
+  background: transparent;
+  color: #ff9696;
+  border-color: #754545;
+  cursor: pointer;
+}
+
+.admin-movie__delete:hover:not(:disabled) {
+  background-color: #382327;
+  border-color: #ff9696;
+}
+
+.admin-movie__delete:disabled {
+  opacity: 0.5;
+  cursor: wait;
 }

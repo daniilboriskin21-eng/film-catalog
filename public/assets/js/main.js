@@ -3,6 +3,7 @@ import {
   updateFavoriteCount,
   toggleFavorite,
   loadFavorites,
+  pruneFavorites,
 } from "./favorites.js";
 import { itemsFilter } from "./filters.js";
 
@@ -34,6 +35,8 @@ async function loadMovies() {
 
     const loadedMovies = await response.json();
 
+    pruneFavorites(loadedMovies);
+
     renderMovies(loadedMovies);
 
     const favoriteButtons = document.querySelectorAll(".movie-card__favorite");
@@ -44,7 +47,7 @@ async function loadMovies() {
 
         const movieId = movieItem.dataset.movieId;
         const isFavorite = toggleFavorite(movieId);
-                
+
         button.setAttribute("aria-pressed", String(isFavorite));
 
         const icon = button.querySelector("span");
